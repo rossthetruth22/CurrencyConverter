@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		85517DAD24851ACE00F8859D /* CurrencyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85517DAC24851ACE00F8859D /* CurrencyDelegate.swift */; };
+		85517DB724931D2B00F8859D /* flagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85517DB624931D2B00F8859D /* flagImage.swift */; };
 		85B5D06224720BF300776B56 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5D06124720BF300776B56 /* NetworkClient.swift */; };
 		85B5D064247300A600776B56 /* NetworkConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5D063247300A600776B56 /* NetworkConvenience.swift */; };
 		85B5D066247331A700776B56 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5D065247331A700776B56 /* Currency.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		85517DAC24851ACE00F8859D /* CurrencyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDelegate.swift; sourceTree = "<group>"; };
+		85517DB624931D2B00F8859D /* flagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flagImage.swift; sourceTree = "<group>"; };
 		85B5D06124720BF300776B56 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		85B5D063247300A600776B56 /* NetworkConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConvenience.swift; sourceTree = "<group>"; };
 		85B5D065247331A700776B56 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				85B5D07024760C0A00776B56 /* CurrencyCell.swift */,
+				85517DB624931D2B00F8859D /* flagImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				85E594372459315E0016C035 /* AppDelegate.swift in Sources */,
 				85B5D066247331A700776B56 /* Currency.swift in Sources */,
 				85E594392459315E0016C035 /* SceneDelegate.swift in Sources */,
+				85517DB724931D2B00F8859D /* flagImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

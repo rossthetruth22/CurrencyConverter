@@ -13,8 +13,31 @@ class MainViewController: UIViewController, CurrencyDelegate {
     var currencies = [Currency]()
     let dataClient = NetworkClient.sharedInstance()
 
-    private var fromCurrency: Currency?
-    private var toCurrency: Currency?
+    private var fromCurrency: Currency?{
+        didSet{
+            if let _ = toCurrency{
+                //button needs to be enabled.
+                if let text = fromCurrAmount.text{
+                    if !text.isEmpty{
+                        convertButton.isEnabled = true
+                    }
+                }
+                
+            }
+        }
+    }
+    private var toCurrency: Currency?{
+        didSet{
+            if let _ = fromCurrency{
+                //button needs to be enabled.
+                 if let text = fromCurrAmount.text{
+                    if !text.isEmpty{
+                        convertButton.isEnabled = true
+                    }
+                }
+            }
+        }
+    }
     
     @IBOutlet weak var fromImage: UIImageView?
     @IBOutlet weak var fromCurrCode: UILabel!
@@ -27,10 +50,13 @@ class MainViewController: UIViewController, CurrencyDelegate {
     @IBOutlet weak var toCurrSign: UILabel!
     @IBOutlet weak var toCurrAmount: UILabel!
     
+    @IBOutlet weak var convertButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        convertButton.isEnabled = false
         
     }
     
@@ -52,15 +78,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
                     self.performSegue(withIdentifier: "pickCurrencySegue", sender: sender)
                 }
             }
-//            if let error = error{
-//                print(error)
-//            }else{
-//
-//                self.currencies =
-//                DispatchQueue.main.async {
-//                    self.performSegue(withIdentifier: "pickCurrencySegue", sender: sender)
-//                }
-//            }
+
         }
         
     }
@@ -110,6 +128,12 @@ class MainViewController: UIViewController, CurrencyDelegate {
         
         fromCurrAmount?.text! += "\(sender.tag)"
         
+        if let _ = fromCurrency, let _ = toCurrency{
+            if !convertButton.isEnabled{
+                convertButton.isEnabled = true
+            }
+        }
+        
     }
     
     @IBAction func deletePressed(_ sender: UIButton){
@@ -118,6 +142,8 @@ class MainViewController: UIViewController, CurrencyDelegate {
                 var textArray = Array(text)
                 textArray.removeLast()
                 fromCurrAmount.text = String(textArray)
+            }else{
+                convertButton.isEnabled = false
             }
         }
     }
@@ -127,8 +153,13 @@ class MainViewController: UIViewController, CurrencyDelegate {
             if let error = error{
                 print(error)
             }else{
+                let formatter = NumberFormatter()
+                formatter.formatterBehavior = .default
+                //formatter.numberStyle = .currency
+                formatter.maximumFractionDigits = 2
+                formatter.minimumFractionDigits = 0
                 DispatchQueue.main.async {
-                    self.toCurrAmount.text = String(amount)
+                    self.toCurrAmount.text = formatter.string(from: amount as NSNumber)
                 }
             }
         }

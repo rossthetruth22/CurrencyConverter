@@ -68,6 +68,10 @@ struct Currency{
 //        }
         
         //print(newCurrencies)
-        return newCurrencies
+        
+        let sortedCurrencies = newCurrencies.sorted { $0.currencyCode < $1.currencyCode}
+        
+        return sortedCurrencies
+        //return newCurrencies
     }
 }
