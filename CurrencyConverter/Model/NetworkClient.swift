@@ -13,7 +13,7 @@ class NetworkClient: NSObject{
     let session = URLSession.shared
     
     
-    func getDataMethod(_ method: String?, parameters: [String:AnyObject], completionHandlerforGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask{
+    func getDataMethod(_ method: String?, parameters: [String:AnyObject], completionHandlerforGET: @escaping (_ result: AnyObject?, _ error: Error?)  -> Void) -> URLSessionDataTask{
         
         let apiParameters = parameters
         
@@ -22,16 +22,20 @@ class NetworkClient: NSObject{
         let task = session.dataTask(with: request) { (data, response, error) in
             guard (error == nil) else{
                 print("There was an error in the get request: \(String(describing: error))")
+                completionHandlerforGET(nil, NetworkError.badReturn)
                 return
             }
             
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else{
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode , 200...299 ~= statusCode else{
                 print("There was no statusCode returned")
+                completionHandlerforGET(nil, NetworkError.badReturn)
                 return
             }
             
             guard let data = data else{
                 print("There was no data for your request")
+                completionHandlerforGET(nil, NetworkError.badReturn)
                 return
             }
             
@@ -61,14 +65,16 @@ class NetworkClient: NSObject{
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: Error?)  -> Void) {
         
         var parsedResult: AnyObject! = nil
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+//            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+            completionHandlerForConvertData(nil, NetworkError.couldNotParseJSON)
+             NetworkError.couldNotParseJSON
         }
         
         completionHandlerForConvertData(parsedResult, nil)
