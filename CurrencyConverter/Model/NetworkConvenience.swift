@@ -10,7 +10,7 @@ import Foundation
 
 extension NetworkClient{
     
-    func getAllCurrencies(completionHandlerForAll: @escaping (_ currencies: [String:Currency], _ error: NSError?) -> Void){
+    func getAllCurrencies(completionHandlerForAll: @escaping (_ currencies: [String:Currency], _ error: Error?) -> Void){
         
         /*List of currencies
         /api/v7/currencies?apiKey=[YOUR_API_KEY]*/
@@ -21,7 +21,7 @@ extension NetworkClient{
         
         let _ = getDataMethod(method, parameters: parametersForAPI) { (result, error) in
             if let error = error{
-                completionHandlerForAll([:], error)
+                completionHandlerForAll([:], error as NSError)
             }else{
                 guard let results = result?["results"] as? [String:[String:AnyObject]] else{
                     return
@@ -41,7 +41,7 @@ extension NetworkClient{
         
     }
     
-    func getAllCountries(completionHandlerForAll: @escaping (_ countries: [String:Country], _ error: NSError?) -> Void){
+    func getAllCountries(completionHandlerForAll: @escaping (_ countries: [String:Country], _ error: Error?) -> Void){
         
         //var returnDict = [String: Currency]()
         
@@ -100,7 +100,7 @@ extension NetworkClient{
         
     }
     
-    func convertCurrency(from: String, to: String, convertAmount: Double, completionHandlerForConversion: @escaping (_ amount: Double, _ error: NSError?) -> Void){
+    func convertCurrency(from: String, to: String, convertAmount: Double, completionHandlerForConversion: @escaping (_ amount: Double, _ error: Error?) -> Void){
         
         /*Ultra compact, multiple queries.
         /api/v7/convert?q=USD_PHP,PHP_USD&compact=ultra&apiKey=[YOUR_API_KEY]*/
