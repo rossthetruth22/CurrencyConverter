@@ -20,6 +20,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
                 if let text = fromCurrAmount.text{
                     if !text.isEmpty{
                         convertButton.isEnabled = true
+                        //reverseButton.isEnabled = true
                     }
                 }
                 
@@ -33,6 +34,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
                  if let text = fromCurrAmount.text{
                     if !text.isEmpty{
                         convertButton.isEnabled = true
+                        //reverseButton.isEnabled = true
                     }
                 }
             }
@@ -50,6 +52,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
     @IBOutlet weak var toCurrSign: UILabel!
     @IBOutlet weak var toCurrAmount: UILabel!
     
+    @IBOutlet weak var reverseButton: UIButton!
     @IBOutlet weak var convertButton: UIButton!
     
 
@@ -57,7 +60,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         convertButton.isEnabled = false
-        
+        //reverseButton.isEnabled = false
     }
     
     
@@ -83,18 +86,18 @@ class MainViewController: UIViewController, CurrencyDelegate {
         
     }
     
-    func setupFromCurrency(_ currency: Currency){
-        let imageName = currency.flag ?? " "
+    func setupFromCurrency(_ currency: Currency?){
+        let imageName = currency?.flag ?? " "
         fromImage?.image = UIImage(named: imageName)
-        fromCurrCode.text = currency.currencyCode
-        fromCurrSign.text = currency.currencySymbol
+        fromCurrCode.text = currency?.currencyCode
+        fromCurrSign.text = currency?.currencySymbol
     }
     
-    func setupToCurrency(_ currency: Currency){
-        let imageName = currency.flag ?? " "
+    func setupToCurrency(_ currency: Currency?){
+        let imageName = currency?.flag ?? " "
         toImage?.image = UIImage(named: imageName)
-        toCurrCode.text = currency.currencyCode
-        toCurrSign.text = currency.currencySymbol
+        toCurrCode.text = currency?.currencyCode
+        toCurrSign.text = currency?.currencySymbol
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,6 +134,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         if let _ = fromCurrency, let _ = toCurrency{
             if !convertButton.isEnabled{
                 convertButton.isEnabled = true
+                //reverseButton.isEnabled = true
             }
         }
         
@@ -144,6 +148,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
                 fromCurrAmount.text = String(textArray)
             }else{
                 convertButton.isEnabled = false
+                //reverseButton.isEnabled = false
             }
         }
     }
@@ -165,6 +170,39 @@ class MainViewController: UIViewController, CurrencyDelegate {
         }
         
     }
+    
+    
+    @IBAction func reversePressed(_ sender: UIButton) {
+        
+        print("In reverse")
+        
+        let holdCurrency = fromCurrency
+        fromCurrency = toCurrency
+        toCurrency = holdCurrency
+        
+        setupFromCurrency(fromCurrency)
+        setupToCurrency(toCurrency)
+        
+        guard let fromText = fromCurrAmount.text, fromText.count > 0, let toText = toCurrAmount.text, toText.count > 0 else{
+            fromCurrAmount.text = ""
+            toCurrAmount.text = ""
+            return
+        }
+        
+        let holdText = fromText
+        fromCurrAmount.text = toCurrAmount.text
+        toCurrAmount.text = holdText
+        
+    }
+    
+    
+    @IBAction func clearPressed(_ sender: UIButton){
+        
+        fromCurrAmount.text = ""
+        toCurrAmount.text = ""
+        
+    }
+    
 
 }
 

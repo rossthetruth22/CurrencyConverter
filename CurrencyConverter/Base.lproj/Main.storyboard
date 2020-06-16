@@ -158,6 +158,9 @@
                                                 <state key="normal" title="Reverse">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="reversePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sae-Lz-iZ2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -273,6 +276,7 @@
                         <outlet property="fromCurrCode" destination="ia1-Z2-Lyh" id="IbM-Jb-Uuf"/>
                         <outlet property="fromCurrSign" destination="0ip-u6-O6l" id="5Uf-T9-M0I"/>
                         <outlet property="fromImage" destination="Mg1-JV-HTL" id="dTr-Lu-fcr"/>
+                        <outlet property="reverseButton" destination="Rt9-hZ-MXi" id="Qsd-k8-5Ox"/>
                         <outlet property="toCurrAmount" destination="bc1-2k-E1W" id="QNn-9B-7uH"/>
                         <outlet property="toCurrCode" destination="c0b-5o-8DX" id="BSc-vG-2dc"/>
                         <outlet property="toCurrSign" destination="V7h-Gl-Emn" id="mEK-7P-NrU"/>
