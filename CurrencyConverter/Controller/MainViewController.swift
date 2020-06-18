@@ -137,6 +137,15 @@ class MainViewController: UIViewController, CurrencyDelegate {
     
     @IBAction func numberPressed(_ sender: UIButton){
         
+        if var fromText = fromCurrAmount.text, fromText.count == 1, fromText.first == "0" as Character{
+            if sender.tag != 0{
+                fromText = "\(sender.tag)"
+                fromCurrAmount.text? = fromText
+                
+            }
+            return
+        }
+        
         fromCurrAmount?.text! += "\(sender.tag)"
         
         if let _ = fromCurrency, let _ = toCurrency{
@@ -217,6 +226,17 @@ class MainViewController: UIViewController, CurrencyDelegate {
     
     @IBAction func decimalPressed(_ sender: UIButton){
         
+        if var fromText = fromCurrAmount.text{
+            if fromText.isEmpty{
+                fromText += "0."
+            }else{
+                let textSet = Set(fromText)
+                if !textSet.contains("." as Character){
+                    fromText += "."
+                    fromCurrAmount.text? = fromText
+                }
+            }
+        }
     }
     
     private func setupAlert(_ error: NetworkError){
