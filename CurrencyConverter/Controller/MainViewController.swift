@@ -103,8 +103,8 @@ class MainViewController: UIViewController, CurrencyDelegate {
     func setupToCurrency(_ currency: Currency?){
         let imageName = currency?.flag ?? " "
         toImage?.image = UIImage(named: imageName)
-        toCurrCode.text = currency.currencyCode
-        toCurrSign.text = currency.currencySymbol
+        toCurrCode.text = currency?.currencyCode
+        toCurrSign.text = currency?.currencySymbol
         toCurrAmount.text = ""
     }
     
@@ -185,24 +185,25 @@ class MainViewController: UIViewController, CurrencyDelegate {
     
     @IBAction func reversePressed(_ sender: UIButton) {
         
-        print("In reverse")
+        //print("In reverse")
         
-        let holdCurrency = fromCurrency
-        fromCurrency = toCurrency
-        toCurrency = holdCurrency
+        let toAmount = toCurrAmount.text
+        let holdCurrency = toCurrency
+        toCurrency = fromCurrency
+        fromCurrency = holdCurrency
         
         setupFromCurrency(fromCurrency)
         setupToCurrency(toCurrency)
         
-        guard let fromText = fromCurrAmount.text, fromText.count > 0, let toText = toCurrAmount.text, toText.count > 0 else{
+        guard let fromText = fromCurrAmount.text, fromText.count > 0, let toText = toAmount, toText.count > 0 else{
             fromCurrAmount.text = ""
-            toCurrAmount.text = ""
+            //toCurrAmount.text = ""
             return
         }
         
-        let holdText = fromText
-        fromCurrAmount.text = toCurrAmount.text
-        toCurrAmount.text = holdText
+        let holdText = toText
+        toCurrAmount.text = fromCurrAmount.text
+        fromCurrAmount.text = holdText
         
     }
     
@@ -211,6 +212,10 @@ class MainViewController: UIViewController, CurrencyDelegate {
         
         fromCurrAmount.text = ""
         toCurrAmount.text = ""
+        
+    }
+    
+    @IBAction func decimalPressed(_ sender: UIButton){
         
     }
     
