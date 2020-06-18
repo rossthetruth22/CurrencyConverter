@@ -181,7 +181,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         let alert = UIAlertController(title: nil, message: error.errorDescription(), preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (_) in
             self.dismiss(animated: true, completion: nil)
-        }
+            }
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
