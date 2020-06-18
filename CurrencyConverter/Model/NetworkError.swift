@@ -14,7 +14,7 @@ enum NetworkError:Error{
     func errorDescription()->String{
         switch self{
         case .badReturn:
-            return "There was an problem getting currencies. Please try again later."
+            return "There was a problem getting currencies. Please try again later."
         case .couldNotParseJSON:
             return "There was an internal error. Please try again later."
         }

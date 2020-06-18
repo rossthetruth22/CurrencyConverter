@@ -71,10 +71,10 @@ class NetworkClient: NSObject{
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+//            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
 //            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
             completionHandlerForConvertData(nil, NetworkError.couldNotParseJSON)
-             NetworkError.couldNotParseJSON
+             //NetworkError.couldNotParseJSON
         }
         
         completionHandlerForConvertData(parsedResult, nil)

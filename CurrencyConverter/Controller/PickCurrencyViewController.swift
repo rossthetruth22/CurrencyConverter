@@ -84,14 +84,14 @@ extension PickCurrencyViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     
-    func getCurrencyData() ->[Currency]{
-        
-        var currencies = [Currency]()
-        
-        
-        return currencies
-        
-    }
+//    func getCurrencyData() ->[Currency]{
+//        
+//        var currencies = [Currency]()
+//        
+//        
+//        return currencies
+//        
+//    }
     
     
 }

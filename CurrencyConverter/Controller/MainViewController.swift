@@ -71,14 +71,21 @@ class MainViewController: UIViewController, CurrencyDelegate {
     func handleTapWithNetwork(_ sender: Any){
         
         let dataClient = NetworkClient.sharedInstance()
-        dataClient.getCurrenciesWithFlag { (currencies, success) in
+        dataClient.getCurrenciesWithFlag { (currencies, success, error) in
             if success{
                 self.currencies = currencies
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "pickCurrencySegue", sender: sender)
                 }
+            }else{
+                if let error = error as? NetworkError{
+                    
+                    DispatchQueue.main.async {
+                        self.setupAlert(error)
+                    }
+                }
+                
             }
-
         }
         
     }
@@ -95,6 +102,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         toImage?.image = UIImage(named: imageName)
         toCurrCode.text = currency.currencyCode
         toCurrSign.text = currency.currencySymbol
+        toCurrAmount.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,14 +121,14 @@ class MainViewController: UIViewController, CurrencyDelegate {
 
     func returnFromCurrency(_ currency: Currency) {
         fromCurrency = currency
-        print("from currency is \(currency.currencyName)")
-        print(currency.flag)
+        //print("from currency is \(currency.currencyName)")
+        //print(currency.flag)
         setupFromCurrency(fromCurrency!)
     }
     
     func returnToCurrency(_ currency: Currency) {
         toCurrency = currency
-        print("to currency is \(currency.currencyName)")
+        //print("to currency is \(currency.currencyName)")
         setupToCurrency(toCurrency!)
     }
     
@@ -150,8 +158,11 @@ class MainViewController: UIViewController, CurrencyDelegate {
     
     @IBAction func convertPressed(_ sender: UIButton){
         dataClient.convertCurrency(from: fromCurrency!.currencyCode, to: toCurrency!.currencyCode, convertAmount: Double(fromCurrAmount.text!)!) { (amount, error) in
-            if let error = error{
+            if let error = error as? NetworkError{
                 print(error)
+                DispatchQueue.main.async {
+                    self.setupAlert(error)
+                }
             }else{
                 let formatter = NumberFormatter()
                 formatter.formatterBehavior = .default
@@ -164,6 +175,15 @@ class MainViewController: UIViewController, CurrencyDelegate {
             }
         }
         
+    }
+    
+    private func setupAlert(_ error: NetworkError){
+        let alert = UIAlertController(title: nil, message: error.errorDescription(), preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

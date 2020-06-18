@@ -21,7 +21,7 @@ extension NetworkClient{
         
         let _ = getDataMethod(method, parameters: parametersForAPI) { (result, error) in
             if let error = error{
-                completionHandlerForAll([:], error as NSError)
+                completionHandlerForAll([:], error)
             }else{
                 guard let results = result?["results"] as? [String:[String:AnyObject]] else{
                     return
@@ -80,19 +80,19 @@ extension NetworkClient{
         }
     }
     
-    func getCurrenciesWithFlag(completionHandlerForThis: @escaping (_ currencies: [Currency], _ success: Bool) -> Void){
+    func getCurrenciesWithFlag(completionHandlerForThis: @escaping (_ currencies: [Currency], _ success: Bool, _ error:Error?) -> Void){
         
         getAllCountries { (countries, error) in
             if error != nil{
-                completionHandlerForThis([Currency](), false)
+                completionHandlerForThis([Currency](), false, error)
             }else{
                 self.getAllCurrencies { (currencies, error) in
                     if error != nil{
-                        completionHandlerForThis([Currency](), false)
+                        completionHandlerForThis([Currency](), false, error)
                     }else{
                         let splitCurrencies = Currency.splitCurrency(currencies)
                         let realCurrencies = Currency.addFlag(countries: countries, currencies: splitCurrencies)
-                        completionHandlerForThis(realCurrencies, true)
+                        completionHandlerForThis(realCurrencies, true, nil)
                     }
                 }
             }
