@@ -36,11 +36,6 @@ struct Country{
             
             returnCountries[currencyID] = country
         }
-        
-//        let sortedCountries = returnCountries.sorted { (<#(key: String, value: Country)#>, <#(key: String, value: Country)#>) -> Bool in
-//            <#code#>
-//        }
-        
         return returnCountries
     }
 }

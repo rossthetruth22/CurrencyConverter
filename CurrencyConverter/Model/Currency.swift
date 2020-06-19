@@ -54,7 +54,9 @@ struct Currency{
         var newCurrencies = currencies
         var index = 0
         while index < newCurrencies.count{
-            if let country = countries[newCurrencies[index].currencyID]{
+            if let flag = DuplicateCountry.duplicates[newCurrencies[index].currencyID]{
+                newCurrencies[index].flag = flag.lowercased()
+            }else if let country = countries[newCurrencies[index].currencyID]{
                 newCurrencies[index].flag = country.flagID.lowercased()
             }
             index += 1

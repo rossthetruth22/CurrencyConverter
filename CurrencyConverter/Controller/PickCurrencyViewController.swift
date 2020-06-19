@@ -59,7 +59,13 @@ extension PickCurrencyViewController: UITableViewDataSource, UITableViewDelegate
         cell.currencyCode.text = currentCurrency.currencyCode
         cell.symbolLabel.text = currentCurrency.currencySymbol ?? " "
         //print(currentCurrency.flag)
-        cell.flag?.image = UIImage(named: currentCurrency.flag ?? "")
+
+        if let flag = currentCurrency.flag{
+            cell.flag?.image = UIImage(named: flag)
+        }else{
+            cell.flag?.image = UIImage()
+        }
+//        cell.flag?.image = UIImage(named: currentCurrency.flag)
         
         return cell
     }

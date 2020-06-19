@@ -22,6 +22,8 @@ class MainViewController: UIViewController, CurrencyDelegate {
                         convertButton.isEnabled = true
                         //reverseButton.isEnabled = true
                     }
+                }else{
+                    convertButton.isEnabled = false
                 }
                 
             }
@@ -36,6 +38,8 @@ class MainViewController: UIViewController, CurrencyDelegate {
                         convertButton.isEnabled = true
                         //reverseButton.isEnabled = true
                     }
+                 }else{
+                    convertButton.isEnabled = false
                 }
             }
         }
@@ -163,9 +167,9 @@ class MainViewController: UIViewController, CurrencyDelegate {
                 var textArray = Array(text)
                 textArray.removeLast()
                 fromCurrAmount.text = String(textArray)
-            }else{
-                convertButton.isEnabled = false
-                //reverseButton.isEnabled = false
+                if text.count == 1{
+                    convertButton.isEnabled = false
+                }
             }
         }
     }
@@ -221,6 +225,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         
         fromCurrAmount.text = ""
         toCurrAmount.text = ""
+        convertButton.isEnabled = false
         
     }
     
@@ -233,9 +238,10 @@ class MainViewController: UIViewController, CurrencyDelegate {
                 let textSet = Set(fromText)
                 if !textSet.contains("." as Character){
                     fromText += "."
-                    fromCurrAmount.text? = fromText
+                    //fromCurrAmount.text? = fromText
                 }
             }
+            fromCurrAmount.text? = fromText
         }
     }
     
