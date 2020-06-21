@@ -19,102 +19,135 @@
                                 <rect key="frame" x="20" y="64" width="374" height="387.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-mz-pbS">
-                                        <rect key="frame" x="0.0" y="0.0" width="292.5" height="191"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="191"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-3W-N22">
-                                                <rect key="frame" x="0.0" y="53" width="91.5" height="85.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sEU-rC-wQo">
+                                                <rect key="frame" x="0.0" y="53" width="60" height="85.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sEU-rC-wQo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="85.5"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="us" translatesAutoresizingMaskIntoConstraints="NO" id="Mg1-JV-HTL" customClass="flagImage" customModule="CurrencyConverter" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                                <gestureRecognizers/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="60" id="34x-VP-TH5"/>
-                                                                    <constraint firstAttribute="width" secondItem="Mg1-JV-HTL" secondAttribute="height" multiplier="1:1" id="lKD-7v-Ooy"/>
-                                                                    <constraint firstAttribute="height" constant="60" id="v37-Sf-8fw"/>
-                                                                </constraints>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="TOP-X8-7XK" appends="YES" id="aIu-OD-Tet"/>
-                                                                </connections>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ia1-Z2-Lyh">
-                                                                <rect key="frame" x="0.0" y="65" width="60" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="us" translatesAutoresizingMaskIntoConstraints="NO" id="Mg1-JV-HTL" customClass="flagImage" customModule="CurrencyConverter" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
-                                                            <constraint firstItem="ia1-Z2-Lyh" firstAttribute="width" secondItem="Mg1-JV-HTL" secondAttribute="width" id="OPl-hR-jPK"/>
+                                                            <constraint firstAttribute="width" constant="60" id="34x-VP-TH5"/>
+                                                            <constraint firstAttribute="width" secondItem="Mg1-JV-HTL" secondAttribute="height" multiplier="1:1" id="lKD-7v-Ooy"/>
+                                                            <constraint firstAttribute="height" constant="60" id="v37-Sf-8fw"/>
                                                         </constraints>
-                                                    </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ip-u6-O6l">
-                                                        <rect key="frame" x="79" y="30.5" width="12.5" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="TOP-X8-7XK" appends="YES" id="aIu-OD-Tet"/>
+                                                        </connections>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ia1-Z2-Lyh">
+                                                        <rect key="frame" x="0.0" y="65" width="60" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="ia1-Z2-Lyh" firstAttribute="width" secondItem="Mg1-JV-HTL" secondAttribute="width" id="OPl-hR-jPK"/>
+                                                </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwK-Ed-n1k">
-                                                <rect key="frame" x="113.5" y="63" width="179" height="65"/>
-                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="iI5-Ew-Is7">
-                                        <rect key="frame" x="0.0" y="196" width="290.5" height="191.5"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="e5K-7d-iXI">
-                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="191.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xht-FD-BQX" userLabel="Sign Amount Name Stack View">
+                                                <rect key="frame" x="82" y="51" width="212" height="89.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xx1-BC-qgF">
-                                                        <rect key="frame" x="0.0" y="53" width="60" height="85.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wai-na-t6g" userLabel="Sign and Amount Stack View">
+                                                        <rect key="frame" x="0.5" y="0.0" width="211" height="65"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gb" translatesAutoresizingMaskIntoConstraints="NO" id="g14-H0-qHx" customClass="flagImage" customModule="CurrencyConverter" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                                <gestureRecognizers/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="NbQ-GY-FaX"/>
-                                                                    <constraint firstAttribute="width" constant="60" id="icI-Ug-bsN"/>
-                                                                    <constraint firstAttribute="width" secondItem="g14-H0-qHx" secondAttribute="height" multiplier="1:1" id="owK-bs-U7R"/>
-                                                                </constraints>
-                                                                <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="Xh9-4O-1SZ" appends="YES" id="79L-hd-bMy"/>
-                                                                </connections>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GBP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-5o-8DX">
-                                                                <rect key="frame" x="0.0" y="65" width="60" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ip-u6-O6l">
+                                                                <rect key="frame" x="0.0" y="20.5" width="12.5" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rwK-Ed-n1k">
+                                                                <rect key="frame" x="32.5" y="0.0" width="178.5" height="65"/>
+                                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="25"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="c0b-5o-8DX" firstAttribute="width" secondItem="g14-H0-qHx" secondAttribute="width" id="Y23-qa-Ssn"/>
-                                                        </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7h-Gl-Emn">
-                                                        <rect key="frame" x="79" y="85.5" width="10.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="United States Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGd-rR-kjJ">
+                                                        <rect key="frame" x="29.5" y="69" width="153" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc1-2k-E1W">
-                                                <rect key="frame" x="124.5" y="0.0" width="166" height="191.5"/>
-                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="rwK-Ed-n1k" firstAttribute="width" secondItem="8kT-mz-pbS" secondAttribute="width" multiplier="0.605753" id="IV3-rc-NIo"/>
+                                            <constraint firstItem="kGd-rR-kjJ" firstAttribute="height" secondItem="ia1-Z2-Lyh" secondAttribute="height" id="cM9-b1-Ix8"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="XNP-XA-jl3">
+                                        <rect key="frame" x="0.0" y="196" width="294" height="191.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1bn-uJ-gXA">
+                                                <rect key="frame" x="0.0" y="53" width="60" height="85.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gb" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-pU-IOV" customClass="flagImage" customModule="CurrencyConverter" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="I7e-pU-IOV" secondAttribute="height" multiplier="1:1" id="KTk-iK-3Gm"/>
+                                                            <constraint firstAttribute="width" constant="60" id="QhE-QH-fFL"/>
+                                                            <constraint firstAttribute="height" constant="60" id="xAc-XY-iLT"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Xh9-4O-1SZ" appends="YES" id="h8z-MM-xYX"/>
+                                                        </connections>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GBP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJK-Qm-afA">
+                                                        <rect key="frame" x="0.0" y="65" width="60" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="VJK-Qm-afA" firstAttribute="width" secondItem="I7e-pU-IOV" secondAttribute="width" id="fu1-rG-ZYY"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vzY-CY-z1p" userLabel="Sign Amount Name Stack View">
+                                                <rect key="frame" x="82" y="51" width="212" height="89.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BgL-SO-4EI" userLabel="Sign and Amount Stack View">
+                                                        <rect key="frame" x="0.5" y="0.0" width="210.5" height="65"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRW-6r-wiA">
+                                                                <rect key="frame" x="0.0" y="20.5" width="12.5" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="70P-hP-GHS">
+                                                                <rect key="frame" x="32.5" y="0.0" width="178" height="65"/>
+                                                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="25"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="British Pound Sterling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFX-Ny-Rp3">
+                                                        <rect key="frame" x="23.5" y="69" width="165" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="70P-hP-GHS" firstAttribute="width" secondItem="XNP-XA-jl3" secondAttribute="width" multiplier="0.605753" id="1qU-gj-Mux"/>
+                                            <constraint firstItem="BFX-Ny-Rp3" firstAttribute="height" secondItem="VJK-Qm-afA" secondAttribute="height" id="LKO-ls-uMb"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="8kT-mz-pbS" firstAttribute="width" secondItem="clB-sH-6uF" secondAttribute="width" multiplier="0.786096" id="KFt-mQ-tIo"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-fK-7Kl">
                                 <rect key="frame" x="15" y="461.5" width="384" height="388.5"/>
@@ -312,13 +345,15 @@
                         <outlet property="convertButton" destination="CB4-Bj-8Ty" id="jLH-4e-y2C"/>
                         <outlet property="fromCurrAmount" destination="rwK-Ed-n1k" id="2fj-KP-Mtj"/>
                         <outlet property="fromCurrCode" destination="ia1-Z2-Lyh" id="IbM-Jb-Uuf"/>
+                        <outlet property="fromCurrName" destination="kGd-rR-kjJ" id="Je2-7c-g5Q"/>
                         <outlet property="fromCurrSign" destination="0ip-u6-O6l" id="5Uf-T9-M0I"/>
                         <outlet property="fromImage" destination="Mg1-JV-HTL" id="dTr-Lu-fcr"/>
                         <outlet property="reverseButton" destination="Rt9-hZ-MXi" id="Qsd-k8-5Ox"/>
-                        <outlet property="toCurrAmount" destination="bc1-2k-E1W" id="QNn-9B-7uH"/>
-                        <outlet property="toCurrCode" destination="c0b-5o-8DX" id="BSc-vG-2dc"/>
-                        <outlet property="toCurrSign" destination="V7h-Gl-Emn" id="mEK-7P-NrU"/>
-                        <outlet property="toImage" destination="g14-H0-qHx" id="FRO-e5-dca"/>
+                        <outlet property="toCurrAmount" destination="70P-hP-GHS" id="aqE-eF-4v7"/>
+                        <outlet property="toCurrCode" destination="VJK-Qm-afA" id="mpB-52-s8h"/>
+                        <outlet property="toCurrName" destination="BFX-Ny-Rp3" id="vEz-iF-BNo"/>
+                        <outlet property="toCurrSign" destination="RRW-6r-wiA" id="fKU-hS-geF"/>
+                        <outlet property="toImage" destination="I7e-pU-IOV" id="GvU-CD-P0v"/>
                         <segue destination="p0L-yb-uz1" kind="presentation" identifier="pickCurrencySegue" id="XnD-0m-4DT"/>
                     </connections>
                 </viewController>
@@ -330,7 +365,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="Xh9-4O-1SZ">
                     <connections>
-                        <action selector="toTapped:" destination="BYZ-38-t0r" id="fJ5-oB-QJP"/>
+                        <action selector="toTapped:" destination="BYZ-38-t0r" id="oLn-AG-z3m"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -382,13 +417,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qr0-j1-VjE">
                                                             <rect key="frame" x="102.5" y="20.5" width="164" height="45"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="HTb-m9-99Z">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="United States Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="HTb-m9-99Z">
                                                                     <rect key="frame" x="0.0" y="0.0" width="164" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mnh-pT-elp">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="United States Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Mnh-pT-elp">
                                                                     <rect key="frame" x="5.5" y="24.5" width="153" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

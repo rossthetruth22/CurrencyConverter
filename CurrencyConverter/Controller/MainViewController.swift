@@ -49,12 +49,14 @@ class MainViewController: UIViewController, CurrencyDelegate {
     @IBOutlet weak var fromCurrCode: UILabel!
     @IBOutlet weak var fromCurrSign: UILabel!
     @IBOutlet weak var fromCurrAmount: UILabel!
+    @IBOutlet weak var fromCurrName: UILabel!
     
     
     @IBOutlet weak var toImage: UIImageView?
     @IBOutlet weak var toCurrCode: UILabel!
     @IBOutlet weak var toCurrSign: UILabel!
     @IBOutlet weak var toCurrAmount: UILabel!
+    @IBOutlet weak var toCurrName: UILabel!
     
     @IBOutlet weak var reverseButton: UIButton!
     @IBOutlet weak var convertButton: UIButton!
@@ -102,6 +104,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         fromImage?.image = UIImage(named: imageName)
         fromCurrCode.text = currency?.currencyCode
         fromCurrSign.text = currency?.currencySymbol
+        fromCurrName.text = currency?.currencyName
     }
     
     func setupToCurrency(_ currency: Currency?){
@@ -110,6 +113,7 @@ class MainViewController: UIViewController, CurrencyDelegate {
         toCurrCode.text = currency?.currencyCode
         toCurrSign.text = currency?.currencySymbol
         toCurrAmount.text = ""
+        toCurrName.text = currency?.currencyName
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
