@@ -100,16 +100,26 @@ class MainViewController: UIViewController, CurrencyDelegate {
     }
     
     func setupFromCurrency(_ currency: Currency?){
-        let imageName = currency?.flag ?? " "
-        fromImage?.image = UIImage(named: imageName)
+//        let imageName = currency?.flag ?? " "
+//        fromImage?.image = UIImage(named: imageName)
+        if let imageName = currency?.flag{
+            fromImage?.image = UIImage(named: imageName)
+        }else{
+            fromImage?.image = UIImage(systemName: "plus.circle")
+        }
         fromCurrCode.text = currency?.currencyCode
         fromCurrSign.text = currency?.currencySymbol
         fromCurrName.text = currency?.currencyName
     }
     
     func setupToCurrency(_ currency: Currency?){
-        let imageName = currency?.flag ?? " "
-        toImage?.image = UIImage(named: imageName)
+//        let imageName = currency?.flag ?? " "
+//        toImage?.image = UIImage(named: imageName)
+        if let imageName = currency?.flag{
+            toImage?.image = UIImage(named: imageName)
+        }else{
+            toImage?.image = UIImage(systemName: "plus.circle")
+        }
         toCurrCode.text = currency?.currencyCode
         toCurrSign.text = currency?.currencySymbol
         toCurrAmount.text = ""
