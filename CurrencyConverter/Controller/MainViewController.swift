@@ -189,6 +189,11 @@ class MainViewController: UIViewController, CurrencyDelegate {
     }
     
     @IBAction func convertPressed(_ sender: UIButton){
+        
+        if fromCurrAmount.text?.last == "."{
+            fromCurrAmount.text?.removeLast()
+        }
+        
         dataClient.convertCurrency(from: fromCurrency!.currencyCode, to: toCurrency!.currencyCode, convertAmount: Double(fromCurrAmount.text!)!) { (amount, error) in
             if let error = error as? NetworkError{
                 print(error)

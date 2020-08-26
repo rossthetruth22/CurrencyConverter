@@ -28,13 +28,14 @@ class NetworkClient: NSObject{
             
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode , 200...299 ~= statusCode else{
-                print("There was no statusCode returned")
+                //print((response as? HTTPURLResponse)?.statusCode)
+                //print("There was no statusCode returned")
                 completionHandlerforGET(nil, NetworkError.badReturn)
                 return
             }
             
             guard let data = data else{
-                print("There was no data for your request")
+                //print("There was no data for your request")
                 completionHandlerforGET(nil, NetworkError.badReturn)
                 return
             }
