@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Country{
+struct Countries{
     
     var currencyID: String
     var countrySymbol: String
@@ -22,9 +22,9 @@ struct Country{
         self.flagID = flagID
     }
     
-    static func addCountry(_ countries: [String:[String:AnyObject]]) -> [String:Country]{
-        
-        var returnCountries = [String:Country]()
+    static func addCountry(_ countries: [String:[String:AnyObject]]) -> [String:Countries]{
+        //print(countries)
+        var returnCountries = [String:Countries]()
         
         for (_, country) in countries{
             
@@ -32,10 +32,11 @@ struct Country{
             let countrySymbol = country["currencySymbol"] as! String
             let currencyName = country["currencyName"] as! String
             let flagID = country["id"] as! String
-            let country = Country(currencyID: currencyID, countrySymbol: countrySymbol, currencyName: currencyName, flagID: flagID)
+            let country = Countries(currencyID: currencyID, countrySymbol: countrySymbol, currencyName: currencyName, flagID: flagID)
             
             returnCountries[currencyID] = country
         }
+       // print(returnCountries)
         return returnCountries
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UIViewController, CurrencyDelegate {
     
@@ -61,12 +62,20 @@ class MainViewController: UIViewController, CurrencyDelegate {
     @IBOutlet weak var reverseButton: UIButton!
     @IBOutlet weak var convertButton: UIButton!
     
+//    var container: NSPersistentContainer!
+    var container: CurrencyData!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         convertButton.isEnabled = false
         //reverseButton.isEnabled = false
+        container = CurrencyData.shared
+        guard container != nil else{
+            print("container is not available")
+            return
+        }
+        
     }
     
     
@@ -80,17 +89,28 @@ class MainViewController: UIViewController, CurrencyDelegate {
     func handleTapWithNetwork(_ sender: Any){
         
         let dataClient = NetworkClient.sharedInstance()
-        dataClient.getCurrenciesWithFlag { (currencies, success, error) in
+        dataClient.getCurrenciesWithFlag { [weak self] (currencies, success, error) in
             if success{
-                self.currencies = currencies
+//                self!.currencies = currencies
+//                let backgroundContext = self!.container.backgroundContext
+//                for currency in self!.currencies{
+//                    let current = Currency(context: backgroundContext)
+//                    current.currencyCode = currency.currencyCode
+//                    current.currencyID = currency.currencyID
+//                    current.currencyName = currency.currencyName
+//                    current.currencySymbol = currency.currencySymbol
+//                    current.flag = currency.flag
+//                }
+//                (UIApplication.shared.delegate as? AppDelegate)?.saveContext(backgroundContext: backgroundContext)
+//                self!.container.saveContext(backgroundContext: backgroundContext)
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "pickCurrencySegue", sender: sender)
+                    self!.performSegue(withIdentifier: "pickCurrencySegue", sender: sender)
                 }
             }else{
                 if let error = error as? NetworkError{
                     
                     DispatchQueue.main.async {
-                        self.setupAlert(error)
+                        self!.setupAlert(error)
                     }
                 }
                 
@@ -133,8 +153,9 @@ class MainViewController: UIViewController, CurrencyDelegate {
         if segue.identifier == "pickCurrencySegue"{
             
             if let destination = segue.destination as? PickCurrencyViewController{
-                destination.currencies = self.currencies
+                //destination.currencies = self.currencies
                 destination.sender = sender as? String
+                destination.container = self.container
                 destination.delegate = self
             }
         }
@@ -193,8 +214,10 @@ class MainViewController: UIViewController, CurrencyDelegate {
         if fromCurrAmount.text?.last == "."{
             fromCurrAmount.text?.removeLast()
         }
-        
-        dataClient.convertCurrency(from: fromCurrency!.currencyCode, to: toCurrency!.currencyCode, convertAmount: Double(fromCurrAmount.text!)!) { (amount, error) in
+        guard let fromCode = fromCurrency?.currencyCode, let toCode = toCurrency?.currencyCode else{
+            return
+        }
+        dataClient.convertCurrency(from: fromCode, to: toCode, convertAmount: Double(fromCurrAmount.text!)!) { (amount, error) in
             if let error = error as? NetworkError{
                 print(error)
                 DispatchQueue.main.async {

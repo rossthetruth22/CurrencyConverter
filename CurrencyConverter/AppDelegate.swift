@@ -12,10 +12,15 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        if let rootVC = window?.rootViewController as? MainViewController{
+//            rootVC.container = persistentContainer
+//        }
+        
         return true
     }
 
@@ -61,17 +66,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    lazy var backgroundContext: NSManagedObjectContext = {
+        
+        let context = persistentContainer.newBackgroundContext()
+        return context
+        
+    }()
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
-        let context = persistentContainer.viewContext
+    func saveContext (backgroundContext: NSManagedObjectContext? = nil) {
+        let context = backgroundContext ?? persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                print("unsuccessful")
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }

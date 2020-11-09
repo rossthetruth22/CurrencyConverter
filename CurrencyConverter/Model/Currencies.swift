@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-struct Currency{
+class Currencies{
     
     var currencyCode: String
     var currencyName: String
@@ -24,24 +25,25 @@ struct Currency{
     }
     
     static func addCurrency(currencies: [String:[String:AnyObject]]) -> [
-        String:Currency]{
+        String:Currencies]{
         
-            var newCurrencies = [String:Currency]()
+            var newCurrencies = [String:Currencies]()
         
         for (dictKey, currency) in currencies{
             let code = dictKey
             let name = currency["currencyName"] as! String
             let symbol :String? = currency["currencySymbol"] as? String
             let id : String = currency["id"] as! String
-            let currency = Currency(code: code, name: name, symbol: symbol, id: id)
+            let currency = Currencies(code: code, name: name, symbol: symbol, id: id)
             newCurrencies[dictKey] = currency
         }
+            //print(newCurrencies)
         return newCurrencies
     }
     
-    static func splitCurrency(_ currencies: [String:Currency]) -> [Currency]{
+    static func splitCurrency(_ currencies: [String:Currencies]) -> [Currencies]{
         
-        var returnCurrency = [Currency]()
+        var returnCurrency = [Currencies]()
         for (_, currency) in currencies{
             returnCurrency.append(currency)
         }
@@ -49,9 +51,9 @@ struct Currency{
         return returnCurrency
     }
     
-    static func addFlag(countries: [String:Country], currencies: [Currency]) -> [Currency]{
+    static func addFlag(countries: [String:Countries], currencies: [Currencies]) -> [Currencies]{
         
-        var newCurrencies = currencies
+        let newCurrencies = currencies
         var index = 0
         while index < newCurrencies.count{
             if let flag = DuplicateCountry.duplicates[newCurrencies[index].currencyID]{

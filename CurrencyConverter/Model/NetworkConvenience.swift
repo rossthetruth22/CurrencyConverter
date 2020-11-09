@@ -10,7 +10,7 @@ import Foundation
 
 extension NetworkClient{
     
-    func getAllCurrencies(completionHandlerForAll: @escaping (_ currencies: [String:Currency], _ error: Error?) -> Void){
+    func getAllCurrencies(completionHandlerForAll: @escaping (_ currencies: [String:Currencies], _ error: Error?) -> Void){
         
         /*List of currencies
         /api/v7/currencies?apiKey=[YOUR_API_KEY]*/
@@ -29,8 +29,8 @@ extension NetworkClient{
                 
                 //print(results)
                 
-                let currencies = Currency.addCurrency(currencies: results)
-                
+                let currencies = Currencies.addCurrency(currencies: results)
+                CurrencyData.shared.createCurrencies(currencyDict: results)
 
                 completionHandlerForAll(currencies, nil)
                 
@@ -41,7 +41,7 @@ extension NetworkClient{
         
     }
     
-    func getAllCountries(completionHandlerForAll: @escaping (_ countries: [String:Country], _ error: Error?) -> Void){
+    func getAllCountries(completionHandlerForAll: @escaping (_ countries: [String:Countries], _ error: Error?) -> Void){
         
         //var returnDict = [String: Currency]()
         
@@ -73,26 +73,28 @@ extension NetworkClient{
 //                }
 //                completionHandlerForAll(returnDict, nil)
                 
-                let countries = Country.addCountry(results)
+                CurrencyData.shared.createCountries(countryDict: results)
+                let countries = Countries.addCountry(results)
                 completionHandlerForAll(countries, nil)
                 
             }
         }
     }
     
-    func getCurrenciesWithFlag(completionHandlerForThis: @escaping (_ currencies: [Currency], _ success: Bool, _ error:Error?) -> Void){
+    func getCurrenciesWithFlag(completionHandlerForThis: @escaping (_ currencies: [Currencies], _ success: Bool, _ error:Error?) -> Void){
         
         getAllCountries { (countries, error) in
             if error != nil{
-                completionHandlerForThis([Currency](), false, error)
+                completionHandlerForThis([Currencies](), false, error)
             }else{
                 self.getAllCurrencies { (currencies, error) in
                     if error != nil{
-                        completionHandlerForThis([Currency](), false, error)
+                        completionHandlerForThis([Currencies](), false, error)
                     }else{
-                        let splitCurrencies = Currency.splitCurrency(currencies)
-                        let realCurrencies = Currency.addFlag(countries: countries, currencies: splitCurrencies)
+                        let splitCurrencies = Currencies.splitCurrency(currencies)
+                        let realCurrencies = Currencies.addFlag(countries: countries, currencies: splitCurrencies)
                         completionHandlerForThis(realCurrencies, true, nil)
+                        
                     }
                 }
             }

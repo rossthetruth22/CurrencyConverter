@@ -7,21 +7,35 @@
 //
 
 import UIKit
+import CoreData
 
 class PickCurrencyViewController: UIViewController {
     
     var currencies = [Currency]()
     var delegate: CurrencyDelegate?
     var sender: String!
+    var container: CurrencyData!
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard container != nil else{return}
+        currencies = container.fetchCurrencies()
+//        let fetch:NSFetchRequest = Currency.fetchRequest()
+//        do{
+//          currencies = try container.viewContext.fetch(fetch)
+//        }catch{
+//            print("problem")
+//        }
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        
+        
         
 
         // Do any additional setup after loading the view.
@@ -80,11 +94,19 @@ extension PickCurrencyViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismiss(animated: true) {
+//            let code = self.currencies[indexPath.row].currencyCode
+//            let name = self.currencies[indexPath.row].currencyName
+//            let symbol = self.currencies[indexPath.row].currencySymbol
+//            let id = self.currencies[indexPath.row].currencyID
+            let selectedCurrency = self.currencies[indexPath.row]
+            //let vv = Currencies(code: code!, name: name!, symbol: symbol, id: id!)
+            
             if self.sender == "from"{
-                self.delegate?.returnFromCurrency(self.currencies[indexPath.row])
+                
+                self.delegate?.returnFromCurrency(selectedCurrency)
 
             }else if self.sender == "to"{
-                self.delegate?.returnToCurrency(self.currencies[indexPath.row])
+                self.delegate?.returnToCurrency(selectedCurrency)
             }
         }
     }
@@ -103,6 +125,15 @@ extension PickCurrencyViewController: UITableViewDataSource, UITableViewDelegate
 }
 
 extension PickCurrencyViewController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        currencies = container.fetchCurrencies(searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
     
 }
 
